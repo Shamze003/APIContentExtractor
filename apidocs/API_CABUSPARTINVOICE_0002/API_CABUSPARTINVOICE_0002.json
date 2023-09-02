@@ -1,0 +1,2424 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Contract Accounting Business Partner Invoice – Read",
+    "version": "2.0.1",
+    "description": "\r\n\r\nRead invoice items for a business partner and read the corresponding invoice headers with this service. For each invoice you can read correspondence data including the printed document.\r\n\r\nOnly use the version 2 of the service. Do not use version 1 as this version is deprecated."
+  },
+  "externalDocs": {
+    "description": "Business Documentation",
+    "url": "https://help.sap.com:00443/http.svc/ahp2/SAP_S4HANA_CLOUD/2308.latest/EN/68/db3f019142419a8ca6ddeaee1592bb/frameset.htm"
+  },
+  "x-sap-api-type": "ODATAV4",
+  "x-sap-shortText": "Retrieve a list of Contract Accounting (FI-CA) invoices from your SAP S/4HANA Cloud system using this synchronous inbound service",
+  "x-sap-software-min-version": "2308",
+  "x-sap-ext-overview": [
+    {
+      "name": "Communication Scenario",
+      "values": [
+        {
+          "text": "Finance - Contract Accounting Open Item Management Integration(SAP_COM_0361)",
+          "format": "plain"
+        }
+      ]
+    },
+    {
+      "name": "Scope Items",
+      "values": [
+        {
+          "text": "[Contract Accounting - Open Item Management(2UJ)](https://me.sap.com/processnavigator/SolP/2UJ \" Link To BP \")",
+          "format": "markdown"
+        },
+        {
+          "text": "[Contract Accounting: Open Item Management(PUJ)](https://me.sap.com/processnavigator/SolP/PUJ \" Link To BP \")",
+          "format": "markdown"
+        }
+      ]
+    },
+    {
+      "name": "Authentication Methods",
+      "values": [{ "text": "x509", "format": "plain" }]
+    },
+    {
+      "name": "Service Group Name",
+      "values": [{ "text": "API_CABUSPARTINVOICE", "format": "plain" }]
+    },
+    {
+      "name": "Business Object",
+      "values": [
+        {
+          "text": "Contract Accounting Business Partner Invoice",
+          "format": "plain"
+        }
+      ]
+    }
+  ],
+  "security": [{ "basicAuthentication": [] }],
+  "servers": [
+    {
+      "url": "https://{host}:{port}/sap/opu/odata4/sap/api_cabuspartinvoice/srvd_a2x/sap/api_cabuspartinvoice/0002",
+      "variables": { "host": { "default": "" }, "port": { "default": "" } }
+    },
+    {
+      "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata4/sap/api_cabuspartinvoice/srvd_a2x/sap/api_cabuspartinvoice/0002"
+    }
+  ],
+  "x-sap-extensible": { "supported": "no" },
+  "tags": [
+    { "name": "Enhanced Bus Partner Invoice Correspnc" },
+    { "name": "CABPInvcEnhcdForDspCrcy" },
+    { "name": "CABPInvcItemEnhcdForDspCrcy" }
+  ],
+  "paths": {
+    "/CABPInvcCorrespncEnhcd": {
+      "get": {
+        "summary": "Get entities from CABPInvcCorrespncEnhcd",
+        "tags": ["Enhanced Bus Partner Invoice Correspnc"],
+        "parameters": [
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": { "type": "string" }
+          },
+          { "$ref": "#/components/parameters/count" },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CABusPartnerInvoiceUUID desc",
+                  "CACorrespondenceType",
+                  "CACorrespondenceType desc",
+                  "CACorrespondence",
+                  "CACorrespondence desc",
+                  "CADocCtnCorrespncSqncNumber",
+                  "CADocCtnCorrespncSqncNumber desc",
+                  "CorrespondencePrintDate",
+                  "CorrespondencePrintDate desc",
+                  "CorrespondenceCreationDate",
+                  "CorrespondenceCreationDate desc",
+                  "CorrespondenceCreationTime",
+                  "CorrespondenceCreationTime desc",
+                  "MimeType",
+                  "MimeType desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CACorrespondenceType",
+                  "CACorrespondence",
+                  "CADocCtnCorrespncSqncNumber",
+                  "CorrespondencePrintDate",
+                  "CorrespondenceCreationDate",
+                  "CorrespondenceCreationTime",
+                  "MimeType",
+                  "CACorrespondenceBinary"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CABusPartInvcCorrespncEnhcd_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": { "$ref": "#/components/schemas/count" },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABusPartInvcCorrespncEnhcd_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": { "$ref": "#/components/responses/error" }
+        }
+      }
+    },
+    "/CABPInvcCorrespncEnhcd/{CABusPartnerInvoiceUUID}/{CACorrespondenceType}/{CACorrespondence}/{CADocCtnCorrespncSqncNumber}": {
+      "parameters": [
+        {
+          "name": "CABusPartnerInvoiceUUID",
+          "in": "path",
+          "required": true,
+          "description": "Document Container ID",
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "name": "CACorrespondenceType",
+          "in": "path",
+          "required": true,
+          "description": "Correspondence Type",
+          "schema": { "type": "string", "maxLength": 4 },
+          "x-sap-object-node-type-reference": "ContrAcctgCorrespondenceType"
+        },
+        {
+          "name": "CACorrespondence",
+          "in": "path",
+          "required": true,
+          "description": "Correspondence Key",
+          "schema": { "type": "string", "maxLength": 36 }
+        },
+        {
+          "name": "CADocCtnCorrespncSqncNumber",
+          "in": "path",
+          "required": true,
+          "description": "Sequence Number",
+          "schema": { "type": "string", "maxLength": 6 }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from CABPInvcCorrespncEnhcd by key",
+        "tags": ["Enhanced Bus Partner Invoice Correspnc"],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CACorrespondenceType",
+                  "CACorrespondence",
+                  "CADocCtnCorrespncSqncNumber",
+                  "CorrespondencePrintDate",
+                  "CorrespondenceCreationDate",
+                  "CorrespondenceCreationTime",
+                  "MimeType",
+                  "CACorrespondenceBinary"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABusPartInvcCorrespncEnhcd_Type"
+                }
+              }
+            }
+          },
+          "4XX": { "$ref": "#/components/responses/error" }
+        }
+      }
+    },
+    "/CABPInvcEnhcdForDspCrcy/{P_DisplayCurrency}/Set": {
+      "parameters": [
+        {
+          "name": "P_DisplayCurrency",
+          "in": "path",
+          "required": true,
+          "description": "Currency",
+          "schema": { "type": "string", "maxLength": 3 }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related Set",
+        "tags": ["CABPInvcEnhcdForDspCrcy"],
+        "parameters": [
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/search" },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": { "type": "string" }
+          },
+          { "$ref": "#/components/parameters/count" },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CABusPartnerInvoiceUUID desc",
+                  "CABusPartnerInvoiceStatus",
+                  "CABusPartnerInvoiceStatus desc",
+                  "CADocumentContainerRefType",
+                  "CADocumentContainerRefType desc",
+                  "CADocumentContainerReference",
+                  "CADocumentContainerReference desc",
+                  "CreationDate",
+                  "CreationDate desc",
+                  "CreationTime",
+                  "CreationTime desc",
+                  "DisplayCurrency",
+                  "DisplayCurrency desc",
+                  "CAInvoiceAmountInDisplayCrcy",
+                  "CAInvoiceAmountInDisplayCrcy desc",
+                  "OpenAmountInDisplayCrcy",
+                  "OpenAmountInDisplayCrcy desc",
+                  "CashDiscountAmountInDspCrcy",
+                  "CashDiscountAmountInDspCrcy desc",
+                  "CAEligibleAmountForCshDiscInDC",
+                  "CAEligibleAmountForCshDiscInDC desc",
+                  "CAReleasedAmtInDisplayCurrency",
+                  "CAReleasedAmtInDisplayCurrency desc",
+                  "CAClearingAmountInDisplayCrcy",
+                  "CAClearingAmountInDisplayCrcy desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CABusPartnerInvoiceStatus",
+                  "CADocumentContainerRefType",
+                  "CADocumentContainerReference",
+                  "CreationDate",
+                  "CreationTime",
+                  "DisplayCurrency",
+                  "CAInvoiceAmountInDisplayCrcy",
+                  "OpenAmountInDisplayCrcy",
+                  "CashDiscountAmountInDspCrcy",
+                  "CAEligibleAmountForCshDiscInDC",
+                  "CAReleasedAmtInDisplayCurrency",
+                  "CAClearingAmountInDisplayCrcy"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": ["*", "Parameters", "_BusPartInvoiceCorrespncEnhcd"]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CABPInvcEnhcdForDspCrcyType",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": { "$ref": "#/components/schemas/count" },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": { "$ref": "#/components/responses/error" }
+        }
+      }
+    },
+    "/CABPInvcEnhcdForDspCrcy/{P_DisplayCurrency}/Set/{CABusPartnerInvoiceUUID-1}": {
+      "parameters": [
+        {
+          "name": "P_DisplayCurrency",
+          "in": "path",
+          "required": true,
+          "description": "Currency",
+          "schema": { "type": "string", "maxLength": 3 }
+        },
+        {
+          "name": "CABusPartnerInvoiceUUID-1",
+          "in": "path",
+          "required": true,
+          "description": "Document Container ID",
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from related Set by key",
+        "tags": ["CABPInvcEnhcdForDspCrcy"],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CABusPartnerInvoiceStatus",
+                  "CADocumentContainerRefType",
+                  "CADocumentContainerReference",
+                  "CreationDate",
+                  "CreationTime",
+                  "DisplayCurrency",
+                  "CAInvoiceAmountInDisplayCrcy",
+                  "OpenAmountInDisplayCrcy",
+                  "CashDiscountAmountInDspCrcy",
+                  "CAEligibleAmountForCshDiscInDC",
+                  "CAReleasedAmtInDisplayCurrency",
+                  "CAClearingAmountInDisplayCrcy"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": ["*", "Parameters", "_BusPartInvoiceCorrespncEnhcd"]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyType"
+                }
+              }
+            }
+          },
+          "4XX": { "$ref": "#/components/responses/error" }
+        }
+      }
+    },
+    "/CABPInvcEnhcdForDspCrcy/{P_DisplayCurrency}/Set/{CABusPartnerInvoiceUUID-1}/_BusPartInvoiceCorrespncEnhcd": {
+      "parameters": [
+        {
+          "name": "P_DisplayCurrency",
+          "in": "path",
+          "required": true,
+          "description": "Currency",
+          "schema": { "type": "string", "maxLength": 3 }
+        },
+        {
+          "name": "CABusPartnerInvoiceUUID-1",
+          "in": "path",
+          "required": true,
+          "description": "Document Container ID",
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related _BusPartInvoiceCorrespncEnhcd",
+        "tags": ["CABPInvcEnhcdForDspCrcy"],
+        "parameters": [
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/search" },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": { "type": "string" }
+          },
+          { "$ref": "#/components/parameters/count" },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CABusPartnerInvoiceUUID desc",
+                  "CACorrespondenceType",
+                  "CACorrespondenceType desc",
+                  "CACorrespondence",
+                  "CACorrespondence desc",
+                  "CADocCtnCorrespncSqncNumber",
+                  "CADocCtnCorrespncSqncNumber desc",
+                  "CorrespondencePrintDate",
+                  "CorrespondencePrintDate desc",
+                  "CorrespondenceCreationDate",
+                  "CorrespondenceCreationDate desc",
+                  "CorrespondenceCreationTime",
+                  "CorrespondenceCreationTime desc",
+                  "MimeType",
+                  "MimeType desc",
+                  "CACorrespondenceBinary",
+                  "CACorrespondenceBinary desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CACorrespondenceType",
+                  "CACorrespondence",
+                  "CADocCtnCorrespncSqncNumber",
+                  "CorrespondencePrintDate",
+                  "CorrespondenceCreationDate",
+                  "CorrespondenceCreationTime",
+                  "MimeType",
+                  "CACorrespondenceBinary"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CABusPartInvcCorrespncEnhcd_Type",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": { "$ref": "#/components/schemas/count" },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABusPartInvcCorrespncEnhcd_Type"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": { "$ref": "#/components/responses/error" }
+        }
+      }
+    },
+    "/CABPInvcItemEnhcdForDspCrcy/{P_DisplayCurrency}/Set": {
+      "parameters": [
+        {
+          "name": "P_DisplayCurrency",
+          "in": "path",
+          "required": true,
+          "description": "Currency",
+          "schema": { "type": "string", "maxLength": 3 }
+        }
+      ],
+      "get": {
+        "summary": "Get entities from related Set",
+        "tags": ["CABPInvcItemEnhcdForDspCrcy"],
+        "parameters": [
+          { "$ref": "#/components/parameters/top" },
+          { "$ref": "#/components/parameters/skip" },
+          { "$ref": "#/components/parameters/search" },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "schema": { "type": "string" }
+          },
+          { "$ref": "#/components/parameters/count" },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CABusPartnerInvoiceUUID desc",
+                  "CABusPartnerInvoiceItem",
+                  "CABusPartnerInvoiceItem desc",
+                  "CABusPartnerInvoiceItemStatus",
+                  "CABusPartnerInvoiceItemStatus desc",
+                  "CADocumentContainerRefType",
+                  "CADocumentContainerRefType desc",
+                  "CADocumentContainerReference",
+                  "CADocumentContainerReference desc",
+                  "CreationDate",
+                  "CreationDate desc",
+                  "CreationTime",
+                  "CreationTime desc",
+                  "CADocument",
+                  "CADocument desc",
+                  "CARepetitionItemNumber",
+                  "CARepetitionItemNumber desc",
+                  "CABPItemNumber",
+                  "CABPItemNumber desc",
+                  "BusinessPartner",
+                  "BusinessPartner desc",
+                  "ContractAccount",
+                  "ContractAccount desc",
+                  "CAContract",
+                  "CAContract desc",
+                  "CASubApplication",
+                  "CASubApplication desc",
+                  "CompanyCode",
+                  "CompanyCode desc",
+                  "CADocumentOriginCode",
+                  "CADocumentOriginCode desc",
+                  "CABPItemText",
+                  "CABPItemText desc",
+                  "BusinessArea",
+                  "BusinessArea desc",
+                  "Segment",
+                  "Segment desc",
+                  "CACashDiscountRate",
+                  "CACashDiscountRate desc",
+                  "CAGroupingForPayment",
+                  "CAGroupingForPayment desc",
+                  "CAApplicationArea",
+                  "CAApplicationArea desc",
+                  "CAMainTransaction",
+                  "CAMainTransaction desc",
+                  "CASubTransaction",
+                  "CASubTransaction desc",
+                  "CAClearingReason",
+                  "CAClearingReason desc",
+                  "DocumentDate",
+                  "DocumentDate desc",
+                  "CAPostingDate",
+                  "CAPostingDate desc",
+                  "CANetDueDate",
+                  "CANetDueDate desc",
+                  "CADeferralDate",
+                  "CADeferralDate desc",
+                  "CACashDiscountDueDate",
+                  "CACashDiscountDueDate desc",
+                  "CAValueDateForClearing",
+                  "CAValueDateForClearing desc",
+                  "CAClearingDate",
+                  "CAClearingDate desc",
+                  "ExchangeRateDate",
+                  "ExchangeRateDate desc",
+                  "TransactionCurrency",
+                  "TransactionCurrency desc",
+                  "CAAmountInTransactionCurrency",
+                  "CAAmountInTransactionCurrency desc",
+                  "CAOpenAmountInTransactionCrcy",
+                  "CAOpenAmountInTransactionCrcy desc",
+                  "CACashDiscountAmtInTransCrcy",
+                  "CACashDiscountAmtInTransCrcy desc",
+                  "CAEligibleAmountForCshDiscInTC",
+                  "CAEligibleAmountForCshDiscInTC desc",
+                  "CAReleasedAmtInTransCurrency",
+                  "CAReleasedAmtInTransCurrency desc",
+                  "DisplayCurrency",
+                  "DisplayCurrency desc",
+                  "AmountInDisplayCurrency",
+                  "AmountInDisplayCurrency desc",
+                  "OpenAmountInDisplayCrcy",
+                  "OpenAmountInDisplayCrcy desc",
+                  "CashDiscountAmountInDspCrcy",
+                  "CashDiscountAmountInDspCrcy desc",
+                  "CAEligibleAmountForCshDiscInDC",
+                  "CAEligibleAmountForCshDiscInDC desc",
+                  "CAReleasedAmtInDisplayCurrency",
+                  "CAReleasedAmtInDisplayCurrency desc",
+                  "CAClearingAmountInDisplayCrcy",
+                  "CAClearingAmountInDisplayCrcy desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CABusPartnerInvoiceItem",
+                  "CABusPartnerInvoiceItemStatus",
+                  "CADocumentContainerRefType",
+                  "CADocumentContainerReference",
+                  "CreationDate",
+                  "CreationTime",
+                  "CADocument",
+                  "CARepetitionItemNumber",
+                  "CABPItemNumber",
+                  "BusinessPartner",
+                  "ContractAccount",
+                  "CAContract",
+                  "CASubApplication",
+                  "CompanyCode",
+                  "CADocumentOriginCode",
+                  "CABPItemText",
+                  "BusinessArea",
+                  "Segment",
+                  "CACashDiscountRate",
+                  "CAGroupingForPayment",
+                  "CAApplicationArea",
+                  "CAMainTransaction",
+                  "CASubTransaction",
+                  "CAClearingReason",
+                  "DocumentDate",
+                  "CAPostingDate",
+                  "CANetDueDate",
+                  "CADeferralDate",
+                  "CACashDiscountDueDate",
+                  "CAValueDateForClearing",
+                  "CAClearingDate",
+                  "ExchangeRateDate",
+                  "TransactionCurrency",
+                  "CAAmountInTransactionCurrency",
+                  "CAOpenAmountInTransactionCrcy",
+                  "CACashDiscountAmtInTransCrcy",
+                  "CAEligibleAmountForCshDiscInTC",
+                  "CAReleasedAmtInTransCurrency",
+                  "DisplayCurrency",
+                  "AmountInDisplayCurrency",
+                  "OpenAmountInDisplayCrcy",
+                  "CashDiscountAmountInDspCrcy",
+                  "CAEligibleAmountForCshDiscInDC",
+                  "CAReleasedAmtInDisplayCurrency",
+                  "CAClearingAmountInDisplayCrcy"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "enum": ["*", "Parameters"] }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entities",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Collection of CABPInvcItemEnhcdForDspCrcyType",
+                  "type": "object",
+                  "properties": {
+                    "@odata.count": { "$ref": "#/components/schemas/count" },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyType"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": { "$ref": "#/components/responses/error" }
+        }
+      }
+    },
+    "/CABPInvcItemEnhcdForDspCrcy/{P_DisplayCurrency}/Set/{CABusPartnerInvoiceUUID-1}/{CABusPartnerInvoiceItem-1}": {
+      "parameters": [
+        {
+          "name": "P_DisplayCurrency",
+          "in": "path",
+          "required": true,
+          "description": "Currency",
+          "schema": { "type": "string", "maxLength": 3 }
+        },
+        {
+          "name": "CABusPartnerInvoiceUUID-1",
+          "in": "path",
+          "required": true,
+          "description": "Document Container ID",
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "name": "CABusPartnerInvoiceItem-1",
+          "in": "path",
+          "required": true,
+          "description": "Sequence Number",
+          "schema": { "type": "string", "maxLength": 6 }
+        }
+      ],
+      "get": {
+        "summary": "Get entity from related Set by key",
+        "tags": ["CABPInvcItemEnhcdForDspCrcy"],
+        "parameters": [
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "CABusPartnerInvoiceUUID",
+                  "CABusPartnerInvoiceItem",
+                  "CABusPartnerInvoiceItemStatus",
+                  "CADocumentContainerRefType",
+                  "CADocumentContainerReference",
+                  "CreationDate",
+                  "CreationTime",
+                  "CADocument",
+                  "CARepetitionItemNumber",
+                  "CABPItemNumber",
+                  "BusinessPartner",
+                  "ContractAccount",
+                  "CAContract",
+                  "CASubApplication",
+                  "CompanyCode",
+                  "CADocumentOriginCode",
+                  "CABPItemText",
+                  "BusinessArea",
+                  "Segment",
+                  "CACashDiscountRate",
+                  "CAGroupingForPayment",
+                  "CAApplicationArea",
+                  "CAMainTransaction",
+                  "CASubTransaction",
+                  "CAClearingReason",
+                  "DocumentDate",
+                  "CAPostingDate",
+                  "CANetDueDate",
+                  "CADeferralDate",
+                  "CACashDiscountDueDate",
+                  "CAValueDateForClearing",
+                  "CAClearingDate",
+                  "ExchangeRateDate",
+                  "TransactionCurrency",
+                  "CAAmountInTransactionCurrency",
+                  "CAOpenAmountInTransactionCrcy",
+                  "CACashDiscountAmtInTransCrcy",
+                  "CAEligibleAmountForCshDiscInTC",
+                  "CAReleasedAmtInTransCurrency",
+                  "DisplayCurrency",
+                  "AmountInDisplayCurrency",
+                  "OpenAmountInDisplayCrcy",
+                  "CashDiscountAmountInDspCrcy",
+                  "CAEligibleAmountForCshDiscInDC",
+                  "CAReleasedAmtInDisplayCurrency",
+                  "CAClearingAmountInDisplayCrcy"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expand related entities, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": { "type": "string", "enum": ["*", "Parameters"] }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyType"
+                }
+              }
+            }
+          },
+          "4XX": { "$ref": "#/components/responses/error" }
+        }
+      }
+    },
+    "/$batch": {
+      "post": {
+        "summary": "Send a group of requests",
+        "description": "Group multiple requests into a single request payload, see [Batch Requests](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_BatchRequests).\n\n*Please note that \"Try it out\" is not supported for this request.*",
+        "tags": ["Batch Requests"],
+        "requestBody": {
+          "required": true,
+          "description": "Batch request",
+          "content": {
+            "multipart/mixed;boundary=request-separator": {
+              "schema": { "type": "string" },
+              "example": "--request-separator\nContent-Type: application/http\nContent-Transfer-Encoding: binary\n\nGET CABPInvcCorrespncEnhcd HTTP/1.1\nAccept: application/json\n\n\n--request-separator--"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch response",
+            "content": {
+              "multipart/mixed": {
+                "schema": { "type": "string" },
+                "example": "--response-separator\nContent-Type: application/http\n\nHTTP/1.1 200 OK\nContent-Type: application/json\n\n{...}\n--response-separator--"
+              }
+            }
+          },
+          "4XX": { "$ref": "#/components/responses/error" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuthentication": { "type": "http", "scheme": "basic" }
+    },
+    "schemas": {
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyParameters": {
+        "type": "object",
+        "properties": {
+          "P_DisplayCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Currency",
+            "description": "Currency"
+          },
+          "Set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyType"
+            }
+          }
+        },
+        "title": "CABPInvcEnhcdForDspCrcyParameters"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyParameters-create": {
+        "type": "object",
+        "properties": {
+          "Set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyType-create"
+            }
+          }
+        },
+        "title": "CABPInvcEnhcdForDspCrcyParameters (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyParameters-update": {
+        "type": "object",
+        "title": "CABPInvcEnhcdForDspCrcyParameters (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyType": {
+        "type": "object",
+        "properties": {
+          "CABusPartnerInvoiceUUID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Identification",
+            "description": "Document Container ID"
+          },
+          "CABusPartnerInvoiceItem": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Sequence Number"
+          },
+          "CABusPartnerInvoiceItemStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgBusPrtnInvcItemSts",
+            "title": "Status",
+            "description": "Status of Item of an Invoice"
+          },
+          "CADocumentContainerRefType": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "ContrAcctgDocContainerRefType",
+            "title": "Category",
+            "description": "Document Container - Reference Type"
+          },
+          "CADocumentContainerReference": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Key",
+            "description": "Document Container - Identification for Reference Category"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Time of Entry"
+          },
+          "CADocument": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Document Number",
+            "description": "Number of a FI-CA Document"
+          },
+          "CARepetitionItemNumber": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Repetition Item",
+            "description": "Repetition Item in FI-CA Document"
+          },
+          "CABPItemNumber": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Item",
+            "description": "Item Number in FI-CA Document"
+          },
+          "BusinessPartner": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Business Partner",
+            "description": "Business Partner Number"
+          },
+          "ContractAccount": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Contract Account",
+            "description": "Contract Account Number"
+          },
+          "CAContract": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Contract",
+            "description": "Reference Specifications from Contract"
+          },
+          "CASubApplication": {
+            "type": "string",
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "ContrAcctgSubapplication",
+            "title": "Subapplication",
+            "description": "Subapplication in Contract Accounts Receivable and Payable"
+          },
+          "CompanyCode": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "CompanyCode",
+            "title": "Company Code"
+          },
+          "CADocumentOriginCode": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgDocumentOriginCode",
+            "title": "Document Origin",
+            "description": "Document Origin Key"
+          },
+          "CABPItemText": { "type": "string", "maxLength": 50 },
+          "BusinessArea": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "BusinessArea",
+            "title": "Business Area"
+          },
+          "Segment": {
+            "type": "string",
+            "maxLength": 10,
+            "x-sap-object-node-type-reference": "Segment",
+            "title": "Segment",
+            "description": "Segment for Segmental Reporting"
+          },
+          "CACashDiscountRate": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 3,
+            "multipleOf": 0.001,
+            "minimum": -99.999,
+            "maximum": 99.999,
+            "example": 0
+          },
+          "CAGroupingForPayment": { "type": "string", "maxLength": 10 },
+          "CAApplicationArea": {
+            "type": "string",
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "ContrAcctgApplicationArea",
+            "title": "Application area"
+          },
+          "CAMainTransaction": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgMainTransaction",
+            "title": "Main Transaction",
+            "description": "Main Transaction for Line Item"
+          },
+          "CASubTransaction": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgSubtransaction",
+            "title": "Subtransaction",
+            "description": "Subtransaction for Document Item"
+          },
+          "CAClearingReason": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgClearingReason"
+          },
+          "DocumentDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Document Date",
+            "description": "Document Date in Document"
+          },
+          "CAPostingDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Posting Date",
+            "description": "Posting Date in the Document"
+          },
+          "CANetDueDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CADeferralDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CACashDiscountDueDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CAValueDateForClearing": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CAClearingDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "ExchangeRateDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "CAAmountInTransactionCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "CAOpenAmountInTransactionCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "minimum": -99999999999999,
+            "maximum": 99999999999999,
+            "example": 0
+          },
+          "CACashDiscountAmtInTransCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "CAEligibleAmountForCshDiscInTC": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "CAReleasedAmtInTransCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "DisplayCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "AmountInDisplayCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "OpenAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CashDiscountAmountInDspCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAEligibleAmountForCshDiscInDC": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAReleasedAmtInDisplayCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAClearingAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "Parameters": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyParameters"
+          }
+        },
+        "title": "Enhanced BP Invc Item for Dsp Crcy"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyType-create": {
+        "type": "object",
+        "properties": {
+          "CABusPartnerInvoiceUUID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Identification",
+            "description": "Document Container ID"
+          },
+          "CABusPartnerInvoiceItem": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Sequence Number"
+          },
+          "CABusPartnerInvoiceItemStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgBusPrtnInvcItemSts",
+            "title": "Status",
+            "description": "Status of Item of an Invoice"
+          },
+          "CADocumentContainerRefType": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "ContrAcctgDocContainerRefType",
+            "title": "Category",
+            "description": "Document Container - Reference Type"
+          },
+          "CADocumentContainerReference": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Key",
+            "description": "Document Container - Identification for Reference Category"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Time of Entry"
+          },
+          "CADocument": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Document Number",
+            "description": "Number of a FI-CA Document"
+          },
+          "CARepetitionItemNumber": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Repetition Item",
+            "description": "Repetition Item in FI-CA Document"
+          },
+          "CABPItemNumber": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Item",
+            "description": "Item Number in FI-CA Document"
+          },
+          "BusinessPartner": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Business Partner",
+            "description": "Business Partner Number"
+          },
+          "ContractAccount": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Contract Account",
+            "description": "Contract Account Number"
+          },
+          "CAContract": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Contract",
+            "description": "Reference Specifications from Contract"
+          },
+          "CASubApplication": {
+            "type": "string",
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "ContrAcctgSubapplication",
+            "title": "Subapplication",
+            "description": "Subapplication in Contract Accounts Receivable and Payable"
+          },
+          "CompanyCode": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "CompanyCode",
+            "title": "Company Code"
+          },
+          "CADocumentOriginCode": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgDocumentOriginCode",
+            "title": "Document Origin",
+            "description": "Document Origin Key"
+          },
+          "CABPItemText": { "type": "string", "maxLength": 50 },
+          "BusinessArea": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "BusinessArea",
+            "title": "Business Area"
+          },
+          "Segment": {
+            "type": "string",
+            "maxLength": 10,
+            "x-sap-object-node-type-reference": "Segment",
+            "title": "Segment",
+            "description": "Segment for Segmental Reporting"
+          },
+          "CACashDiscountRate": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 3,
+            "multipleOf": 0.001,
+            "minimum": -99.999,
+            "maximum": 99.999,
+            "example": 0
+          },
+          "CAGroupingForPayment": { "type": "string", "maxLength": 10 },
+          "CAApplicationArea": {
+            "type": "string",
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "ContrAcctgApplicationArea",
+            "title": "Application area"
+          },
+          "CAMainTransaction": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgMainTransaction",
+            "title": "Main Transaction",
+            "description": "Main Transaction for Line Item"
+          },
+          "CASubTransaction": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgSubtransaction",
+            "title": "Subtransaction",
+            "description": "Subtransaction for Document Item"
+          },
+          "CAClearingReason": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgClearingReason"
+          },
+          "DocumentDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Document Date",
+            "description": "Document Date in Document"
+          },
+          "CAPostingDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Posting Date",
+            "description": "Posting Date in the Document"
+          },
+          "CANetDueDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CADeferralDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CACashDiscountDueDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CAValueDateForClearing": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CAClearingDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "ExchangeRateDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "CAAmountInTransactionCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "CAOpenAmountInTransactionCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "minimum": -99999999999999,
+            "maximum": 99999999999999,
+            "example": 0
+          },
+          "CACashDiscountAmtInTransCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "CAEligibleAmountForCshDiscInTC": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "CAReleasedAmtInTransCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "DisplayCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "AmountInDisplayCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "OpenAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CashDiscountAmountInDspCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAEligibleAmountForCshDiscInDC": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAReleasedAmtInDisplayCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAClearingAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "Parameters": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyParameters-create"
+          }
+        },
+        "required": ["CABusPartnerInvoiceUUID", "CABusPartnerInvoiceItem"],
+        "title": "Enhanced BP Invc Item for Dsp Crcy (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyType-update": {
+        "type": "object",
+        "properties": {
+          "CABusPartnerInvoiceItemStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgBusPrtnInvcItemSts",
+            "title": "Status",
+            "description": "Status of Item of an Invoice"
+          },
+          "CADocumentContainerRefType": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "ContrAcctgDocContainerRefType",
+            "title": "Category",
+            "description": "Document Container - Reference Type"
+          },
+          "CADocumentContainerReference": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Key",
+            "description": "Document Container - Identification for Reference Category"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Time of Entry"
+          },
+          "CADocument": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Document Number",
+            "description": "Number of a FI-CA Document"
+          },
+          "CARepetitionItemNumber": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Repetition Item",
+            "description": "Repetition Item in FI-CA Document"
+          },
+          "CABPItemNumber": {
+            "type": "string",
+            "maxLength": 4,
+            "title": "Item",
+            "description": "Item Number in FI-CA Document"
+          },
+          "BusinessPartner": {
+            "type": "string",
+            "maxLength": 10,
+            "title": "Business Partner",
+            "description": "Business Partner Number"
+          },
+          "ContractAccount": {
+            "type": "string",
+            "maxLength": 12,
+            "title": "Contract Account",
+            "description": "Contract Account Number"
+          },
+          "CAContract": {
+            "type": "string",
+            "maxLength": 20,
+            "title": "Contract",
+            "description": "Reference Specifications from Contract"
+          },
+          "CASubApplication": {
+            "type": "string",
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "ContrAcctgSubapplication",
+            "title": "Subapplication",
+            "description": "Subapplication in Contract Accounts Receivable and Payable"
+          },
+          "CompanyCode": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "CompanyCode",
+            "title": "Company Code"
+          },
+          "CADocumentOriginCode": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgDocumentOriginCode",
+            "title": "Document Origin",
+            "description": "Document Origin Key"
+          },
+          "CABPItemText": { "type": "string", "maxLength": 50 },
+          "BusinessArea": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "BusinessArea",
+            "title": "Business Area"
+          },
+          "Segment": {
+            "type": "string",
+            "maxLength": 10,
+            "x-sap-object-node-type-reference": "Segment",
+            "title": "Segment",
+            "description": "Segment for Segmental Reporting"
+          },
+          "CACashDiscountRate": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 5,
+            "x-sap-scale": 3,
+            "multipleOf": 0.001,
+            "minimum": -99.999,
+            "maximum": 99.999,
+            "example": 0
+          },
+          "CAGroupingForPayment": { "type": "string", "maxLength": 10 },
+          "CAApplicationArea": {
+            "type": "string",
+            "maxLength": 1,
+            "x-sap-object-node-type-reference": "ContrAcctgApplicationArea",
+            "title": "Application area"
+          },
+          "CAMainTransaction": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgMainTransaction",
+            "title": "Main Transaction",
+            "description": "Main Transaction for Line Item"
+          },
+          "CASubTransaction": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgSubtransaction",
+            "title": "Subtransaction",
+            "description": "Subtransaction for Document Item"
+          },
+          "CAClearingReason": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgClearingReason"
+          },
+          "DocumentDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Document Date",
+            "description": "Document Date in Document"
+          },
+          "CAPostingDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Posting Date",
+            "description": "Posting Date in the Document"
+          },
+          "CANetDueDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CADeferralDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CACashDiscountDueDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CAValueDateForClearing": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "CAClearingDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "ExchangeRateDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13"
+          },
+          "TransactionCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Transaction Currency"
+          },
+          "CAAmountInTransactionCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "CAOpenAmountInTransactionCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 14,
+            "minimum": -99999999999999,
+            "maximum": 99999999999999,
+            "example": 0
+          },
+          "CACashDiscountAmtInTransCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "CAEligibleAmountForCshDiscInTC": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "CAReleasedAmtInTransCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 13,
+            "minimum": -9999999999999,
+            "maximum": 9999999999999,
+            "example": 0
+          },
+          "DisplayCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "AmountInDisplayCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "OpenAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CashDiscountAmountInDspCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAEligibleAmountForCshDiscInDC": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAReleasedAmtInDisplayCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAClearingAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          }
+        },
+        "title": "Enhanced BP Invc Item for Dsp Crcy (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyParameters": {
+        "type": "object",
+        "properties": {
+          "P_DisplayCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "title": "Currency",
+            "description": "Currency"
+          },
+          "Set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyType"
+            }
+          }
+        },
+        "title": "CABPInvcItemEnhcdForDspCrcyParameters"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyParameters-create": {
+        "type": "object",
+        "properties": {
+          "Set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyType-create"
+            }
+          }
+        },
+        "title": "CABPInvcItemEnhcdForDspCrcyParameters (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcItemEnhcdForDspCrcyParameters-update": {
+        "type": "object",
+        "title": "CABPInvcItemEnhcdForDspCrcyParameters (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABusPartInvcCorrespncEnhcd_Type": {
+        "type": "object",
+        "properties": {
+          "CABusPartnerInvoiceUUID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Identification",
+            "description": "Document Container ID"
+          },
+          "CACorrespondenceType": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgCorrespondenceType",
+            "title": "Correspondence Type"
+          },
+          "CACorrespondence": {
+            "type": "string",
+            "maxLength": 36,
+            "title": "Correspondence Key"
+          },
+          "CADocCtnCorrespncSqncNumber": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Sequence Number"
+          },
+          "CorrespondencePrintDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Print Date"
+          },
+          "CorrespondenceCreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CorrespondenceCreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Time of Entry"
+          },
+          "MimeType": { "type": "string", "maxLength": 128 },
+          "CACorrespondenceBinary": {
+            "type": "string",
+            "nullable": true,
+            "format": "base64url",
+            "title": "Form Processing: Content from XFT, XFD, PDF, and so on"
+          }
+        },
+        "title": "Enhanced Bus Partner Invoice Correspnc"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABusPartInvcCorrespncEnhcd_Type-create": {
+        "type": "object",
+        "properties": {
+          "CABusPartnerInvoiceUUID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Identification",
+            "description": "Document Container ID"
+          },
+          "CACorrespondenceType": {
+            "type": "string",
+            "maxLength": 4,
+            "x-sap-object-node-type-reference": "ContrAcctgCorrespondenceType",
+            "title": "Correspondence Type"
+          },
+          "CACorrespondence": {
+            "type": "string",
+            "maxLength": 36,
+            "title": "Correspondence Key"
+          },
+          "CADocCtnCorrespncSqncNumber": {
+            "type": "string",
+            "maxLength": 6,
+            "title": "Sequence Number"
+          },
+          "CorrespondencePrintDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Print Date"
+          },
+          "CorrespondenceCreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CorrespondenceCreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Time of Entry"
+          },
+          "MimeType": { "type": "string", "maxLength": 128 }
+        },
+        "required": [
+          "CABusPartnerInvoiceUUID",
+          "CACorrespondenceType",
+          "CACorrespondence",
+          "CADocCtnCorrespncSqncNumber"
+        ],
+        "title": "Enhanced Bus Partner Invoice Correspnc (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABusPartInvcCorrespncEnhcd_Type-update": {
+        "type": "object",
+        "properties": {
+          "CorrespondencePrintDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Print Date"
+          },
+          "CorrespondenceCreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CorrespondenceCreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Time of Entry"
+          },
+          "MimeType": { "type": "string", "maxLength": 128 }
+        },
+        "title": "Enhanced Bus Partner Invoice Correspnc (for update)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyType": {
+        "type": "object",
+        "properties": {
+          "CABusPartnerInvoiceUUID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Identification",
+            "description": "Document Container ID"
+          },
+          "CABusPartnerInvoiceStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgBusPrtnInvoiceStatus",
+            "title": "Status",
+            "description": "Invoice Status"
+          },
+          "CADocumentContainerRefType": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "ContrAcctgDocContainerRefType",
+            "title": "Category",
+            "description": "Document Container - Reference Type"
+          },
+          "CADocumentContainerReference": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Key",
+            "description": "Document Container - Identification for Reference Category"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Time of Entry"
+          },
+          "DisplayCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "CAInvoiceAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "OpenAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CashDiscountAmountInDspCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAEligibleAmountForCshDiscInDC": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAReleasedAmtInDisplayCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAClearingAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "Parameters": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyParameters"
+          },
+          "_BusPartInvoiceCorrespncEnhcd": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABusPartInvcCorrespncEnhcd_Type"
+            }
+          }
+        },
+        "title": "Enhanced BP Invoice for Display Currency"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyType-create": {
+        "type": "object",
+        "properties": {
+          "CABusPartnerInvoiceUUID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef",
+            "title": "Identification",
+            "description": "Document Container ID"
+          },
+          "CABusPartnerInvoiceStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgBusPrtnInvoiceStatus",
+            "title": "Status",
+            "description": "Invoice Status"
+          },
+          "CADocumentContainerRefType": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "ContrAcctgDocContainerRefType",
+            "title": "Category",
+            "description": "Document Container - Reference Type"
+          },
+          "CADocumentContainerReference": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Key",
+            "description": "Document Container - Identification for Reference Category"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Time of Entry"
+          },
+          "DisplayCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "CAInvoiceAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "OpenAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CashDiscountAmountInDspCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAEligibleAmountForCshDiscInDC": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAReleasedAmtInDisplayCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAClearingAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "Parameters": {
+            "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyParameters-create"
+          },
+          "_BusPartInvoiceCorrespncEnhcd": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABusPartInvcCorrespncEnhcd_Type-create"
+            }
+          }
+        },
+        "required": ["CABusPartnerInvoiceUUID"],
+        "title": "Enhanced BP Invoice for Display Currency (for create)"
+      },
+      "com.sap.gateway.srvd_a2x.api_cabuspartinvoice_2.v0001.CABPInvcEnhcdForDspCrcyType-update": {
+        "type": "object",
+        "properties": {
+          "CABusPartnerInvoiceStatus": {
+            "type": "string",
+            "maxLength": 2,
+            "x-sap-object-node-type-reference": "ContrAcctgBusPrtnInvoiceStatus",
+            "title": "Status",
+            "description": "Invoice Status"
+          },
+          "CADocumentContainerRefType": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "ContrAcctgDocContainerRefType",
+            "title": "Category",
+            "description": "Document Container - Reference Type"
+          },
+          "CADocumentContainerReference": {
+            "type": "string",
+            "maxLength": 50,
+            "title": "Key",
+            "description": "Document Container - Identification for Reference Category"
+          },
+          "CreationDate": {
+            "type": "string",
+            "nullable": true,
+            "format": "date",
+            "example": "2017-04-13",
+            "title": "Entry Date",
+            "description": "Day On Which Accounting Document Was Entered"
+          },
+          "CreationTime": {
+            "type": "string",
+            "format": "time",
+            "example": "15:51:04",
+            "title": "Time of Entry"
+          },
+          "DisplayCurrency": {
+            "type": "string",
+            "maxLength": 3,
+            "x-sap-object-node-type-reference": "Currency",
+            "title": "Currency",
+            "description": "Currency Key"
+          },
+          "CAInvoiceAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "OpenAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CashDiscountAmountInDspCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAEligibleAmountForCshDiscInDC": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAReleasedAmtInDisplayCurrency": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          },
+          "CAClearingAmountInDisplayCrcy": {
+            "anyOf": [{ "type": "number" }, { "type": "string" }],
+            "format": "decimal",
+            "x-sap-precision": 23,
+            "example": 0
+          }
+        },
+        "title": "Enhanced BP Invoice for Display Currency (for update)"
+      },
+      "count": {
+        "anyOf": [{ "type": "number" }, { "type": "string" }],
+        "description": "The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option."
+      },
+      "error": {
+        "type": "object",
+        "required": ["error"],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": ["code", "message"],
+            "properties": {
+              "code": { "type": "string" },
+              "message": { "type": "string" },
+              "target": { "type": "string" },
+              "details": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["code", "message"],
+                  "properties": {
+                    "code": { "type": "string" },
+                    "message": { "type": "string" },
+                    "target": { "type": "string" }
+                  }
+                }
+              },
+              "innererror": {
+                "type": "object",
+                "description": "The structure of this object is service-specific"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "top": {
+        "name": "$top",
+        "in": "query",
+        "description": "Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)",
+        "schema": { "type": "integer", "minimum": 0 },
+        "example": 50
+      },
+      "skip": {
+        "name": "$skip",
+        "in": "query",
+        "description": "Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)",
+        "schema": { "type": "integer", "minimum": 0 }
+      },
+      "count": {
+        "name": "$count",
+        "in": "query",
+        "description": "Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)",
+        "schema": { "type": "boolean" }
+      },
+      "search": {
+        "name": "$search",
+        "in": "query",
+        "description": "Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)",
+        "schema": { "type": "string" }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/error" }
+          }
+        }
+      }
+    }
+  }
+}
